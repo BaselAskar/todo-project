@@ -1,6 +1,7 @@
 package org.example.Model;
 
 import java.time.*;
+import java.util.Objects;
 
 /*
 *
@@ -82,39 +83,16 @@ public class TodoItem {
         else return false;
     }
 
-
     @Override
-    public boolean equals(Object obj){
-        if (obj instanceof TodoItem){
-
-            TodoItem todoItem = (TodoItem) obj;
-
-            if (this.getId() == todoItem.getId()
-                    && this.getTitle().equals(todoItem.getTitle())
-                    && this.getDeadLine().equals(todoItem.getDeadLine())
-                    && this.getCreator().equals(todoItem.getCreator())
-                    && this.getTaskDescription().equals(todoItem.getTaskDescription())
-                    ){
-                return true;
-            }
-
-        }
-
-        return false;
-
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoItem todoItem = (TodoItem) o;
+        return id == todoItem.id && done == todoItem.done && title.equals(todoItem.title) && taskDescription.equals(todoItem.taskDescription) && deadLine.equals(todoItem.deadLine) && creator.equals(todoItem.creator);
     }
 
     @Override
-    public int hashCode(){
-        int result = this.getId();
-
-        result = 12 * result + this.getTitle().hashCode();
-        result = 13 * result + this.getTaskDescription().hashCode();
-        result = 13 * result + this.getDeadLine().hashCode();
-        result = 13 * result + this.getCreator().hashCode();
-
-        return result;
-
+    public int hashCode() {
+        return Objects.hash(id, title, taskDescription, deadLine, done, creator);
     }
-
 }

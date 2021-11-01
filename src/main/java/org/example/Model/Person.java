@@ -1,5 +1,6 @@
 package org.example.Model;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /*
@@ -64,6 +65,7 @@ public class Person {
     }
 
 
+
     @Override
     public String toString(){
         return "{id: " + getId()
@@ -72,33 +74,16 @@ public class Person {
     }
 
     @Override
-    public boolean equals(Object obj){
-        if (obj instanceof Person){
-
-            Person person = (Person) obj;
-
-            if (this.getId() == person.getId()
-                    && this.getFirstName().equals(person.getFirstName())
-                    && this.getLastName().equals(person.getLastName())
-                    && this.getEmail().equals(person.getEmail())
-            ){
-                return true;
-            }
-
-        }
-
-        return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return id == person.id && firstName.equals(person.firstName) && lastName.equals(person.lastName) && email.equals(person.email);
     }
 
     @Override
-    public int hashCode(){
-        int result = this.getId();
-
-        result = 13 * result + this.getFirstName().hashCode();
-        result = 13 * result + this.getLastName().hashCode();
-        result = 13 * result + this.getEmail().hashCode();
-
-        return result;
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, email);
     }
 }
 

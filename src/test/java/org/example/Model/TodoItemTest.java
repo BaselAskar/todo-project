@@ -13,7 +13,8 @@ public class TodoItemTest {
     public static final String TITLE = "Change tires";
     public static final String TASK_DESCRIPTION = "It is necessary to done";
     public static final LocalDate DEAD_LINE = LocalDate.parse("2021-10-25");
-    public static final Person CREATOR = new Person(2,"Maria","johanson","maria@gmail.com");
+    public static final AppUser CREDENTIALS = new AppUser("Basel Askar", "123456", AppRole.ROLE_APP_ADMIN);
+    public static final Person CREATOR = new Person(2,"Maria","johanson","maria@gmail.com", CREDENTIALS);
     public static final boolean DONE = true;
     private TodoItem testObject;
 

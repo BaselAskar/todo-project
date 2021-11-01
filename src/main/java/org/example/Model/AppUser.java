@@ -1,5 +1,7 @@
 package org.example.Model;
 
+import java.util.Objects;
+
 public class AppUser {
     private String userName;
     private String password;
@@ -16,7 +18,7 @@ public class AppUser {
     }
 
     public void setUserName(String userName) {
-        if (userName == null ||userName == "") throw new RuntimeException("It's not allowed to be user name null or empty");
+        if (userName == null ||userName.equals("")) throw new RuntimeException("It's not allowed to be user name null or empty");
         this.userName = userName;
     }
 
@@ -25,7 +27,7 @@ public class AppUser {
     }
 
     public void setPassword(String password) {
-        if (password == null ||password == "") throw new RuntimeException("It's not allowed to be password null or empty");
+        if (password == null ||password.equals("")) throw new RuntimeException("It's not allowed to be password null or empty");
 
         this.password = password;
     }
@@ -40,35 +42,21 @@ public class AppUser {
     }
 
     @Override
-    public boolean equals(Object user){
-
-        if (user instanceof AppUser){
-
-            AppUser appUser = (AppUser) user;
-
-            if (this.getUserName() == appUser.getUserName()
-                    && this.getRole() == appUser.getRole()) return true;
-
-        }
-
-        return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AppUser appUser = (AppUser) o;
+        return userName.equals(appUser.userName) && role == appUser.role;
     }
 
     @Override
-    public int hashCode(){
-
-        int result = 21;
-
-        result = 15 * getUserName().hashCode();
-        result = 15 * getRole().hashCode();
-
-        return result;
+    public int hashCode() {
+        return Objects.hash(userName, role);
     }
-
 
     @Override
     public String toString(){
-        return "{User name: " + getUserName()
-                + ",Roles: " + getRole().getValue() + "}";
+        return "{User name: " + this.getUserName()
+                + ",Roles: " + this.getRole().getValue() + "}";
     }
 }

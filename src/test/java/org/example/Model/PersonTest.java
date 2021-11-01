@@ -11,11 +11,12 @@ public class PersonTest {
     public static final String FIRST_NAME = "Basel";
     public static final String LAST_NAME = "Askar";
     public static final String EMAIL = "basel@gmail.com";
+    public static final AppUser APP_USER = new AppUser("Basel Askar", "123456", AppRole.ROLE_APP_ADMIN);
     private Person testObject;
 
     @Before
     public void setUp() {
-        testObject = new Person(ID, FIRST_NAME, LAST_NAME, EMAIL);
+        testObject = new Person(ID, FIRST_NAME, LAST_NAME, EMAIL, APP_USER);
     }
 
     @Test
@@ -41,7 +42,7 @@ public class PersonTest {
     @Test
     public void test_getSummary(){
         String expected = "{id: 1, name: Basel Askar, email: basel@gmail.com}";
-        assertEquals(testObject.getSummary(),expected);
+        assertEquals(testObject.toString(),expected);
     }
 
 }

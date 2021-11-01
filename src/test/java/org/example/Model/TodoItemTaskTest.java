@@ -26,6 +26,7 @@ public class TodoItemTaskTest {
     public static final Person CREATOR = new Person(PERSON_ID,FIRST_NAME,LAST_NAME,EMAIL,USER);
     public static final TodoItem TODO_ITEM = new TodoItem(TODO_ITEM_ID, TITLE, TASK_DESCRIPTION
             , LOCAL_DATE, DONE, CREATOR);
+    public static final boolean ASSIGNED = false;
 
     //Fields
     private TodoItemTask testObject;
@@ -33,7 +34,7 @@ public class TodoItemTaskTest {
 
     @Before
     public void setUp() {
-        testObject = new TodoItemTask(TODO_ITEM_TASK_ID, TODO_ITEM,CREATOR);
+        testObject = new TodoItemTask(TODO_ITEM_TASK_ID, TODO_ITEM, ASSIGNED,CREATOR);
     }
 
     @Test
@@ -53,7 +54,7 @@ public class TodoItemTaskTest {
     }
 
     @Test
-    public void test_getSummary(){
+    public void test_toString(){
 
         String expected = "Basel Askar assign Change tires";
 

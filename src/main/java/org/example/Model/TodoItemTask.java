@@ -1,17 +1,19 @@
 package org.example.Model;
 
+import java.util.Objects;
+
 public class TodoItemTask {
     private int id;
     private boolean assigned;
     private TodoItem todoItem;
     private Person assignee;
 
-    public TodoItemTask(int id,  TodoItem todoItem, Person assignee) {
+    public TodoItemTask(int id,  TodoItem todoItem,boolean assigned, Person assignee) {
         if (id == 0) throw new RuntimeException("id must not be 0");
         this.id = id;
         setAssignee(assignee);
         setTodoItem(todoItem);
-        setAssigned();
+        setAssigned(assigned);
     }
 
     public int getId() {
@@ -22,8 +24,8 @@ public class TodoItemTask {
         return assigned;
     }
 
-    public void setAssigned() {
-        this.assigned = getAssignee() != null;
+    public void setAssigned(boolean assigned) {
+        this.assigned = assigned;
 
     }
 
@@ -55,37 +57,15 @@ public class TodoItemTask {
     }
 
     @Override
-    public boolean equals(Object obj){
-        if (obj instanceof TodoItemTask){
-
-            TodoItemTask todoItemTask = (TodoItemTask) obj;
-
-            if (this.getId() == todoItemTask.getId()
-                    && this.getTodoItem().equals(todoItemTask.getTodoItem())
-                    && this.getAssignee().equals(todoItemTask.getAssignee())
-                    && this.isAssigned() == todoItemTask.isAssigned()
-            ){
-                return true;
-            }
-
-        }
-
-        return false;
-
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TodoItemTask that = (TodoItemTask) o;
+        return id == that.id && assigned == that.assigned && todoItem.equals(that.todoItem) && Objects.equals(assignee, that.assignee);
     }
 
     @Override
-    public int hashCode(){
-        int result = this.getId();
-
-        result = 11 * result + this.getTodoItem().hashCode();
-        result = 11 * result + this.getAssignee().hashCode();
-
-
-
-        return result;
-
+    public int hashCode() {
+        return Objects.hash(id, assigned, todoItem, assignee);
     }
-
-
 }
