@@ -1,5 +1,7 @@
 package org.example.Model;
 
+import org.example.Sequencers.PersonIdSequencer;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -24,6 +26,13 @@ public class Person {
         setCredentials(credentials);
     }
 
+    public Person(String firstName, String lastName, String email, AppUser credentials) {
+        PersonIdSequencer.nextPersonId();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.credentials = credentials;
+    }
 
     public int getId() {
         return this.id;

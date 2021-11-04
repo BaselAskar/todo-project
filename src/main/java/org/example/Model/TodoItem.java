@@ -1,5 +1,7 @@
 package org.example.Model;
 
+import org.example.Sequencers.TodoItemIdSequencer;
+
 import java.time.*;
 import java.util.Objects;
 
@@ -10,7 +12,7 @@ import java.util.Objects;
 
 
 public class TodoItem {
-    private final int id;
+    private int id;
     private String title;
     private String taskDescription;
     private LocalDate deadLine;
@@ -27,6 +29,15 @@ public class TodoItem {
         setDeadLine(deadLine);
         setDone(done);
         setCreator(creator);
+    }
+
+    public TodoItem(String title, String taskDescription, LocalDate deadLine, boolean done, Person creator) {
+        TodoItemIdSequencer.nextTodoItemId();
+        this.title = title;
+        this.taskDescription = taskDescription;
+        this.deadLine = deadLine;
+        this.done = done;
+        this.creator = creator;
     }
 
     public int getId() {

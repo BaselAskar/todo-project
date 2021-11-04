@@ -1,5 +1,7 @@
 package org.example.Model;
 
+import org.example.Sequencers.TodoItemTaskSequencer;
+
 import java.util.Objects;
 
 public class TodoItemTask {
@@ -9,11 +11,18 @@ public class TodoItemTask {
     private Person assignee;
 
     public TodoItemTask(int id,  TodoItem todoItem,boolean assigned, Person assignee) {
-        if (id == 0) throw new RuntimeException("id must not be 0");
+        if (id <= 0) throw new RuntimeException("id must not be 0");
         this.id = id;
         setAssignee(assignee);
         setTodoItem(todoItem);
         setAssigned(assigned);
+    }
+
+    public TodoItemTask(boolean assigned, TodoItem todoItem, Person assignee) {
+        TodoItemTaskSequencer.nextTodoItemTaskId();
+        this.assigned = assigned;
+        this.todoItem = todoItem;
+        this.assignee = assignee;
     }
 
     public int getId() {
