@@ -1,15 +1,21 @@
 package org.example.DAOs;
 
 import org.example.App;
+import org.example.Model.AppRole;
 import org.example.Model.AppUser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 public class AppUserDAOImpl implements AppUserDAO  {
 
-    private List<AppUser> appUsersStorage = new ArrayList<>();
+    private List<AppUser> appUsersStorage = new ArrayList<>(Arrays.asList(
+            new AppUser("Maria Johanson","123456", AppRole.ROLE_APP_USER),
+            new AppUser("Mark Andrson","123456",AppRole.ROLE_APP_USER),
+            new AppUser("Eman Ali","113546",AppRole.ROLE_APP_USER)
+    ));
 
 
 
